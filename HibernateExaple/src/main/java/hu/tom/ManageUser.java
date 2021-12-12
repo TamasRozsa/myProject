@@ -11,10 +11,15 @@ import org.hibernate.cfg.Configuration;
 
 public class ManageUser {
 
+	private SessionFactory sessionFactory;
+
 	private SessionFactory getSessionFactory() {
-		Configuration cfg = new Configuration();
-		cfg.configure("hibernate.cfg.xml");
-		return cfg.buildSessionFactory();
+		if (sessionFactory == null) {
+			Configuration cfg = new Configuration();
+			cfg.configure("hibernate.cfg.xml");
+			sessionFactory = cfg.buildSessionFactory();
+		}
+		return sessionFactory;
 	}
 
 	/* Method to GET user by Id */
