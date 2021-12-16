@@ -16,8 +16,8 @@ public class UserDAO implements Dao<User> {
 	private EntityManager entityManager = getEntityManager();
 
 	@Override
-	public Optional<User> get(long id) {
-		return Optional.ofNullable(entityManager.find(User.class, id));
+	public Optional<User> get(long userId) {
+		return Optional.ofNullable(entityManager.find(User.class, userId));
 	}
 
 	@Override
@@ -36,29 +36,29 @@ public class UserDAO implements Dao<User> {
 
 	@Override
 	public void save(User t) {
-		executeTransaction(entityManager -> entityManager.persist(t));
+		executeTransaction(e -> e.persist(t));
 	}
 
 	@Override
 	public void update(long userId, User t) {
-
-		User modifiedUser = t;
-		modifiedUser.setId(userId);
-		executeTransaction(entityManager -> entityManager.merge(modifiedUser));
+		t.setId(userId);
+		executeTransaction(e -> e.merge(t));
 	}
 
 	@Override
 	public void delete(long userId) {
 		User user = entityManager.find(User.class, userId);
-		entityManager.remove(user);
+		if (user != null) {
+			executeTransaction(e -> e.remove(user));
+		}
 	}
-	
+
 	private EntityManager getEntityManager() {
 		if (entityManager == null) {
 			entityManager = entityManagerFactory.createEntityManager();
 		}
 		return entityManager;
-		
+
 	}
 
 	private void executeTransaction(Consumer<EntityManager> action) {

@@ -34,10 +34,11 @@ public class Main {
 		}
 
 		/* Update users records */
-		updateUser(3, new User("Muhammad Ali", "23@45"));
+		updateUser(3L, new User("Muhammad Ali", "23@45"));
 
 		/* Delete an user from the database */
-		deleteUser(1);
+		deleteUser(1L);
+		deleteUser(3L);
 
 		/* List down all the user again */
 		List<User> allUser2 = getAllUsers();
