@@ -10,48 +10,49 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USERS")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Integer id;
+	private long id;
 
-	@Column(name = "FIRSTNAME")
-	private String firstName;
+	@Column(name = "NAME")
+	private String name;
 
-	@Column(name = "LASTNAME")
-	private String lastName;
+	@Column(name = "PASSWORD")
+	private String password;
 
 	public User() {
 	}
 
-	public User(String firstName, String lastName) {
+	public User(String name, String password) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.name = name;
+		this.password = password;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
