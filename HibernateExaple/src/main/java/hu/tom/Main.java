@@ -11,14 +11,14 @@ public class Main {
 	public static void main(String[] args) {
 
 		/* Add few user records in database */
-		saveUser(new User("Evan Holyfield", "12@34"));
-		saveUser(new User("Papp Laci", "34@56"));
-		saveUser(new User("Mike Tyson", "45@67"));
+		saveUser(new User("Evan_Holyfield", "12@34"));
+		saveUser(new User("Papp_Laci", "34@56"));
+		saveUser(new User("Mike_Tyson", "45@67"));
 
 		/* Find user with Id */
 		User user1 = getUser(2L);
 		/* Find user with Name */
-		User user2 = getUser("Mike Tyson");
+		User user2 = getUser("Mike_Tyson");
 
 		System.out.println("-Name: " + user1.getName() + " -Password: " + user1.getPassword());
 		System.out.println();

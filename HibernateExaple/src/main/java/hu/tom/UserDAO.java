@@ -25,7 +25,7 @@ public class UserDAO implements Dao<User> {
 		TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.name=:UserName",
 				User.class);
 		typedQuery.setParameter("UserName", name);
-		return Optional.ofNullable(typedQuery.getSingleResult());
+		return typedQuery.getResultList().stream().findFirst(); // TODO return ONLY first record !!!
 	}
 
 	@Override
